@@ -1,6 +1,6 @@
 import tensorflow as tf
 import tflearn
-from nets.nn import network
+from nn.nets import network
 from utils.data_loader import validation_examples, validation_targets 
 
 
