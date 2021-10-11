@@ -15,4 +15,4 @@ def train(data=None, labels=None, network=network, num_epochs=10, batch_size=32,
   model.fit(data, labels, n_epoch=num_epochs, batch_size=batch_size, show_metric=show_metric)
   model.save(path_saver)
 
-train(data=training_examples, labels=training_targets, network=network, path_saver='electricity/save/')
+train(data=training_examples, labels=training_targets, network=network, path_saver='/content/electricity/save/model.tfl')
