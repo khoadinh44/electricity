@@ -10,9 +10,9 @@ from nn.nets import network
 tf.debugging.set_log_device_placement(True)
 
 # Load model------------------------------------------------------------------------------------
-def train(data=None, labels=None, network=network, num_epochs=10, batch_size=32, show_metric=True, path_saver='electricity/save/'):
-  model = tflearn.DNN(network())
+def train(data=None, labels=None, network=network, num_epochs=10, batch_size=32, show_metric=True, path_saver=None):
+  model = tflearn.DNN(network(), tensorboard_dir='/content/electricity/save/tflearn_logs')
   model.fit(data, labels, n_epoch=num_epochs, batch_size=batch_size, show_metric=show_metric)
-  model.save(path_saver)
+#   model.save('/content/electricity/save/'+path_saver)
 
 train(data=training_examples, labels=training_targets, network=network, path_saver='/content/electricity/save/model.tfl')
