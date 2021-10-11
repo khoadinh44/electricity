@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import pandas as pd
 
 data_path='data/fakedata2980.csv'
 
