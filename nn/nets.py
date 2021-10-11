@@ -7,4 +7,5 @@ def network()
   net = tflearn.fully_connected(net, 32)
   net = tflearn.fully_connected(net, 2, activation='softmax')
   net = tflearn.regression(net)
+  net = tflearn.regression(net, optimizer='adam', loss='categorical_crossentropy')
   return net
