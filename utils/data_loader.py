@@ -1,6 +1,8 @@
 import tensorflow as tf
 import numpy as np
 
+data_path='data/fakedata2980.csv'
+
 # Function to define the inputs. Different depending on the model and turbine
 def preprocess_features(wind_farm_dataframe):
     selected_features = wind_farm_dataframe[["WSpeed_1"]] 
@@ -28,3 +30,20 @@ def input_fn(features, labels, training=True, batch_size=32, num_epochs=1):
         dataset = dataset.batch(batch_size).repeat(num_epochs)
         dataset = dataset.prefetch(tf.data.experimental.AUTOTUNE)
         return dataset
+
+# Prepare data------------------------------------------------------------------------------------
+wind_farm_dataframe = pd.read_csv(data_path, sep=",")
+# Randomization of the data
+wind_farm_dataframe = wind_farm_dataframe.reindex(np.random.permutation(wind_farm_dataframe.index))
+
+# Separation of the data into training and validation
+training_dataframe = wind_farm_dataframe.head(2300)
+validation_dataframe = wind_farm_dataframe.tail(680)
+
+# Definition of the training data input variables and targets, calling the preprocess function
+training_examples = preprocess_features(training_dataframe)
+training_targets = preprocess_targets(training_dataframe)
+
+# Definition of the validation data input variables and targets, calling the preprocess function
+validation_examples = preprocess_features(validation_dataframe)
+validation_targets = preprocess_targets(validation_dataframe)
