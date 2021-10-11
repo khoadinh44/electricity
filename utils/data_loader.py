@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 
 data_path='data/fakedata2980.csv'
+num_train=2300
+num_val=680
 
 # Function to define the inputs. Different depending on the model and turbine
 def preprocess_features(wind_farm_dataframe):
@@ -20,7 +22,7 @@ def construct_feature_columns(input_features):
     return set([tf.feature_column.numeric_column(my_feature) for my_feature in input_features])
 
 # Function used to load dataset
-def input_fn(features, labels, training=True, batch_size=32, num_epochs=1):
+def input_fn(features, labels, training=True, batch_size=16, num_epochs=1):
         """An input function for training or evaluating"""
         # Convert the inputs to a Dataset.
         dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
@@ -38,13 +40,26 @@ wind_farm_dataframe = pd.read_csv(data_path, sep=",")
 wind_farm_dataframe = wind_farm_dataframe.reindex(np.random.permutation(wind_farm_dataframe.index))
 
 # Separation of the data into training and validation
-training_dataframe = wind_farm_dataframe.head(2300)
-validation_dataframe = wind_farm_dataframe.tail(680)
+training_dataframe = wind_farm_dataframe.head(num_train)
+validation_dataframe = wind_farm_dataframe.tail(num_val)
 
 # Definition of the training data input variables and targets, calling the preprocess function
-training_examples = preprocess_features(training_dataframe)
-training_targets = preprocess_targets(training_dataframe)
+training_examples_1 = np.ones((num_train, 1))
+training_target_1 = np.ones((num_train, 1))
+
+training_example = preprocess_features(training_dataframe)
+training_target = preprocess_targets(training_dataframe)
+
+training_examples = np.concatenate((training_examples_1, training_example), axis=1).astype(np.float32)
+training_targets = np.concatenate((training_target_1, training_target), axis=1).astype(np.float32)
+
 
 # Definition of the validation data input variables and targets, calling the preprocess function
-validation_examples = preprocess_features(validation_dataframe)
-validation_targets = preprocess_targets(validation_dataframe)
+validation_examples_1 = np.ones((num_val, 1))
+validation_target_1 = np.ones((num_val, 1))
+
+validation_example = preprocess_features(validation_dataframe)
+validation_target = preprocess_targets(validation_dataframe)
+
+validation_examples = np.concatenate((validation_examples_1, validation_example), axis=1).astype(np.float32)
+validation_targets = np.concatenate((validation_target_1, validation_target), axis=1).astype(np.float32)
