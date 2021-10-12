@@ -1,6 +1,5 @@
 import tflearn
 from utils.optimizers import rmsprop, adam, adagrad, momentum
-import keras
 
 def network():
   # Build neural network
