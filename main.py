@@ -15,4 +15,4 @@ def train(data=None, labels=None, val_data=None, val_labels=None, network=networ
   model.fit(data, labels, n_epoch=num_epochs, batch_size=batch_size, show_metric=show_metric, validation_set=(val_data, val_labels))
   model.save('/content/electricity/save/'+name_saver)
 
-train(training_examples, training_targets, network=network, name_saver='model.tflearn')
+train(training_examples, training_targets, validation_examples, validation_targets, network=network, name_saver='model.tflearn')
