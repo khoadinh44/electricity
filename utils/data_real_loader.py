@@ -4,17 +4,16 @@ import pandas as pd
 from numpy import genfromtxt
 
 data_path='data/real.XLS'
-num_train=500
-num_val=7
-
+num_val=10
+num_data=508
 # Function to define the inputs. Different depending on the model and turbine
 def preprocess_features(wind_farm_dataframe):
-    selected_features = wind_farm_dataframe[:, 0:4]
+    selected_features = wind_farm_dataframe[1:num_data, 0:4]
     return np.array(selected_features)
 
 
 def preprocess_targets(wind_farm_dataframe):  
-    selected_targets = wind_farm_dataframe[:, 52:56]
+    selected_targets = wind_farm_dataframe[1:num_data, 52:56]
     return np.array(selected_targets)
 
 # Function used to construct the columns used by the program with the data
@@ -36,10 +35,9 @@ def input_fn(features, labels, training=True, batch_size=16, num_epochs=1):
 
 # Prepare data------------------------------------------------------------------------------------
 wind_farm_dataframe = np.array(genfromtxt(data_path, delimiter='\t'))
-examples = preprocess_features(wind_farm_dataframe).astype(np.float32)
-targets = preprocess_targets(wind_farm_dataframe).astype(np.float32)
-
-all_data = np.concatenate((examples, targets), axis=-1)
+examples = preprocess_features(wind_farm_dataframe)
+targets = preprocess_targets(wind_farm_dataframe)
+all_data = np.concatenate((examples, targets), axis=-1).astype(np.float32)
 val_indices = np.random.choice(all_data.shape[0], size=num_val, replace=False)
 train_indices = [i for i in range(len(all_data)) if i not in val_indices]
 
