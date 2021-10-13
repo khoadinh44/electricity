@@ -8,8 +8,8 @@ from nn.real_nets import network
 # active GPU
 tf.debugging.set_log_device_placement(True)
 
-num_epochs = 200
-batch_size = 64
+num_epochs = 50
+batch_size = 16
 
 # Load model------------------------------------------------------------------------------------
 def train(data=None, labels=None, val_data=None, val_labels=None, network=network, num_epochs=num_epochs, batch_size=batch_size, show_metric=True, name_saver=None):
