@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 import tflearn
 
-from utils.data_loader import training_examples, training_targets, validation_examples, validation_targets
+from utils.data_real_loader import training_examples, training_targets, validation_examples, validation_targets
 from nn.nets import network
 
 # active GPU
