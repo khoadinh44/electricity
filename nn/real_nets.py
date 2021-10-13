@@ -1,6 +1,7 @@
 import tflearn
 import tensorflow as tf
 from utils.optimizers import rmsprop, adam, adagrad, momentum
+
 def leaky_relu(z, name=None):
   return tf.maximum(0.01 * z, z, name=name)
 
