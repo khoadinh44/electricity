@@ -14,8 +14,10 @@ inputs = np.array([[ 7.9,  8.9,  8.9,  9.3],
  [ 9.6,  9.4,  7.8,  8.5],
  [11.6, 12.6, 11.5, 12.8],
  [12.2, 13.4, 12.3, 13.4]])
+one_val = np.ones((inputs.shape[0], 196))
+validation_examples = np.concatenate((inputs, one_val), axis=1).astype(np.float32)
 
 model = tflearn.DNN(network())
 model.load('/content/electricity/save/model.tflearn')
-y_pred = model.predict(inputs)
+y_pred = model.predict(validation_examples)
 print(f'\nThe prediction power is {y_pred}')
