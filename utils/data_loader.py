@@ -44,7 +44,7 @@ training_dataframe = wind_farm_dataframe.head(num_train)
 validation_dataframe = wind_farm_dataframe.tail(num_val)
 
 # Definition of the training data input variables and targets, calling the preprocess function
-training_examples_1 = np.ones((num_train, 1))
+training_examples_1 = np.ones((num_train, 199))
 training_target_1 = np.ones((num_train, 1))
 
 training_example = preprocess_features(training_dataframe)
@@ -55,7 +55,7 @@ training_targets = np.concatenate((training_target_1, training_target), axis=1).
 
 
 # Definition of the validation data input variables and targets, calling the preprocess function
-validation_examples_1 = np.ones((num_val, 1))
+validation_examples_1 = np.ones((num_val, 199))
 validation_target_1 = np.ones((num_val, 1))
 
 validation_example = preprocess_features(validation_dataframe)
