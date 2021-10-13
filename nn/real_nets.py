@@ -8,11 +8,10 @@ loss_obj = tf.keras.losses.CategoricalCrossentropy(reduction=tf.keras.losses.Red
 
 def network():
   # Build neural network
-  net = tflearn.input_data(shape=[None, 4])
   net = tflearn.fully_connected(net, 32)
   net = tf.keras.layers.PReLU()(net)
   net = tflearn.fully_connected(net, 16)
-  net = tf.keras.layers.PReLU()(net)
+  net = tflearn.fully_connected(net, 16)
   net = tflearn.fully_connected(net, 4)
   # net = tf.keras.layers.PReLU()(net)
   net = tflearn.regression(net, optimizer=adam, loss='categorical_crossentropy')
