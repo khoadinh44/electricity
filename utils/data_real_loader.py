@@ -8,12 +8,12 @@ num_val=10
 num_data=508
 # Function to define the inputs. Different depending on the model and turbine
 def preprocess_features(wind_farm_dataframe):
-    selected_features = wind_farm_dataframe[1:num_data, 0:4]
+    selected_features = wind_farm_dataframe[1:num_data, [1, 3, 17, 19]]
     return np.array(selected_features)
 
 
 def preprocess_targets(wind_farm_dataframe):  
-    selected_targets = wind_farm_dataframe[1:num_data, 52:56]
+    selected_targets = wind_farm_dataframe[1:num_data, [52+1, 52+3, 52+17, 52+19]]
     return np.array(selected_targets)
 
 # Function used to construct the columns used by the program with the data
