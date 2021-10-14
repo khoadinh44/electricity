@@ -13,7 +13,7 @@ batch_size = 32
 
 def train(data=None, labels=None, val_data=None, val_labels=None, network=network, num_epochs=num_epochs, batch_size=batch_size, show_metric=True, name_saver=None):
   model = network()
-  model.compile(loss="binary_crossentropy",
+  model.compile(loss="mean_squared_error",
                 metrics=[tf.keras.metrics.Precision()],
                 optimizer=tf.keras.optimizers.Adam())
 
