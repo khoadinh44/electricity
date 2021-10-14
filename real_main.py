@@ -8,7 +8,7 @@ from nn.real_nets import network
 # active GPU
 tf.debugging.set_log_device_placement(True)
 
-num_epochs = 200
+num_epochs = 200000
 batch_size = 32
 
 def train(data=None, labels=None, val_data=None, val_labels=None, network=network, num_epochs=num_epochs, batch_size=batch_size, show_metric=True, name_saver=None):
@@ -19,7 +19,7 @@ def train(data=None, labels=None, val_data=None, val_labels=None, network=networ
 
   history = model.fit(data, labels, epochs=num_epochs,
                     validation_data=(val_data, val_labels))
-  model.save('/content/electricity/save/'+name_saver)
+  model.save('/content/drive/Shareddrives/newpro112233/electricity/weights/'+name_saver)
 
 # def train(data=None, labels=None, val_data=None, val_labels=None, network=network, num_epochs=num_epochs, batch_size=batch_size, show_metric=True, name_saver=None):
 #   model = network()
@@ -32,4 +32,4 @@ def train(data=None, labels=None, val_data=None, val_labels=None, network=networ
 #                     validation_data=([val_data[:, :2], val_data[:, 2:]], [val_labels, val_labels]))
 #   model.save('/content/electricity/save/'+name_saver)
 
-train(training_examples, training_targets, validation_examples, validation_targets, network=network, name_saver='model.h5')
+train(training_examples, training_targets, validation_examples, validation_targets, network=network, name_saver='model_5_tb.h5')
