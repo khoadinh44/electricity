@@ -8,12 +8,12 @@ num_val=10
 num_data=508
 # Function to define the inputs. Different depending on the model and turbine
 def preprocess_features(wind_farm_dataframe):
-    selected_features = wind_farm_dataframe[1:num_data, [1, 3, 17, 19]]
+    selected_features = wind_farm_dataframe[1:num_data, [1, 2, 3, 17, 19]]
     return np.array(selected_features)
 
 
 def preprocess_targets(wind_farm_dataframe):  
-    selected_targets = wind_farm_dataframe[1:num_data, [52+1, 52+3, 52+17, 52+19]]
+    selected_targets = wind_farm_dataframe[1:num_data, [52+1, 52+2, 52+3, 52+17, 52+19]]
     return np.array(selected_targets)
 
 # Function used to construct the columns used by the program with the data
@@ -42,15 +42,14 @@ val_indices = np.random.choice(all_data.shape[0], size=num_val, replace=False)
 train_indices = [i for i in range(len(all_data)) if i not in val_indices]
 
 all_train = all_data[train_indices]
-training_example = all_train[:, :4]
-one_train = np.ones((training_example.shape[0], 196))
-training_examples = np.concatenate((training_example, one_train), axis=1).astype(np.float32)
-training_targets = all_train[:, 4:]
+training_examples = all_train[:, :5]
+# one_train = np.ones((training_example.shape[0], 196))
+# training_examples = np.concatenate((training_example, one_train), axis=1).astype(np.float32)
+training_targets = all_train[:, 5:]
 
 
 all_validation = all_data[val_indices]
-validation_example = all_validation[:, :4]
-one_val = np.ones((validation_example.shape[0], 196))
-validation_examples = np.concatenate((validation_example, one_val), axis=1).astype(np.float32)
-validation_targets = all_validation[:, 4:]
-print(validation_examples.shape)
+validation_examples = all_validation[:, :5]
+# one_val = np.ones((validation_example.shape[0], 196))
+# validation_examples = np.concatenate((validation_example, one_val), axis=1).astype(np.float32)
+validation_targets = all_validation[:, 5:]
