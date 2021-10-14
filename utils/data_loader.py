@@ -6,14 +6,12 @@ data_path='data/fakedata2980.csv'
 num_train=2300
 num_val=680
 
-# Function to define the inputs. Different depending on the model and turbine
 def preprocess_features(wind_farm_dataframe):
     selected_features = wind_farm_dataframe[["WSpeed_1"]] 
     return np.array(selected_features)
 
 
 def preprocess_targets(wind_farm_dataframe):  
-# Function to define the target of the neuralnetwork. “Power_1” changes depending on the wind turbine
     selected_targets = wind_farm_dataframe[["Power_1"]]
     return np.array(selected_targets)
 
@@ -44,22 +42,22 @@ training_dataframe = wind_farm_dataframe.head(num_train)
 validation_dataframe = wind_farm_dataframe.tail(num_val)
 
 # Definition of the training data input variables and targets, calling the preprocess function
-training_examples_1 = np.ones((num_train, 199))
-training_target_1 = np.ones((num_train, 1))
+training_examples_1 = np.ones((num_train, 1))
+# training_target_1 = np.ones((num_train, 1))
 
 training_example = preprocess_features(training_dataframe)
-training_target = preprocess_targets(training_dataframe)
+training_targets = preprocess_targets(training_dataframe)
 
 training_examples = np.concatenate((training_examples_1, training_example), axis=1).astype(np.float32)
-training_targets = np.concatenate((training_target_1, training_target), axis=1).astype(np.float32)
+# training_targets = np.concatenate((training_target_1, training_target), axis=1).astype(np.float32)
 
 
 # Definition of the validation data input variables and targets, calling the preprocess function
-validation_examples_1 = np.ones((num_val, 199))
-validation_target_1 = np.ones((num_val, 1))
+validation_examples_1 = np.ones((num_val, 1))
+# validation_target_1 = np.ones((num_val, 1))
 
 validation_example = preprocess_features(validation_dataframe)
-validation_target = preprocess_targets(validation_dataframe)
+validation_targets = preprocess_targets(validation_dataframe)
 
 validation_examples = np.concatenate((validation_examples_1, validation_example), axis=1).astype(np.float32)
-validation_targets = np.concatenate((validation_target_1, validation_target), axis=1).astype(np.float32)
+# validation_targets = np.concatenate((validation_target_1, validation_target), axis=1).astype(np.float32)
