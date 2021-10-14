@@ -5,11 +5,11 @@ import tensorflow as tf
 
 def network():
   # Build neural network
-  input_ = keras.layers.Input(shape=[4,])
+  input_ = keras.layers.Input(shape=[5,])
   hidden1 = keras.layers.Dense(30, activation=tf.keras.layers.PReLU())(input_)
   hidden2 = keras.layers.Dense(30, activation=tf.keras.layers.PReLU())(hidden1)
   concat = keras.layers.concatenate([input_, hidden2])
-  output = keras.layers.Dense(4, activation=None)(concat)
+  output = keras.layers.Dense(5, activation=None)(concat)
   model = keras.models.Model(inputs=[input_], outputs=[output])
   return model
 
