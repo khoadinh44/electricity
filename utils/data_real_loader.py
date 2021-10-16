@@ -43,13 +43,9 @@ train_indices = [i for i in range(len(all_data)) if i not in val_indices]
 
 all_train = all_data[train_indices]
 training_examples = all_train[:, :5]
-# one_train = np.ones((training_example.shape[0], 196))
-# training_examples = np.concatenate((training_example, one_train), axis=1).astype(np.float32)
 training_targets = all_train[:, 5:]
 
 
 all_validation = all_data[val_indices]
 validation_examples = all_validation[:, :5]
-# one_val = np.ones((validation_example.shape[0], 196))
-# validation_examples = np.concatenate((validation_example, one_val), axis=1).astype(np.float32)
 validation_targets = all_validation[:, 5:]
