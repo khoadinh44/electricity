@@ -13,15 +13,14 @@ def network():
   model = keras.models.Model(inputs=[input_], outputs=[output])
   return model
 
-# def network():
-#   input_A = keras.layers.Input(shape=[2,], name="wide_input")
-#   input_B = keras.layers.Input(shape=[2,], name="deep_input")
-#   hidden1 = keras.layers.Dense(30, activation=tf.keras.layers.PReLU())(input_B)
-#   hidden2 = keras.layers.Dense(30, activation=tf.keras.layers.PReLU())(hidden1)
-#   concat = keras.layers.concatenate([input_A, hidden2])
-#   output = keras.layers.Dense(4, name="main_output")(concat)
-#   aux_output = keras.layers.Dense(4, name="aux_output")(hidden2)
-#   model = keras.models.Model(inputs=[input_A, input_B],
-#                             outputs=[output, aux_output])
-#   return model
-# tf.keras.layers.PReLU()
+def another_network():
+  input_A = keras.layers.Input(shape=[2,], name="wide_input")
+  input_B = keras.layers.Input(shape=[2,], name="deep_input")
+  hidden1 = keras.layers.Dense(30, activation=tf.keras.layers.PReLU())(input_B)
+  hidden2 = keras.layers.Dense(30, activation=tf.keras.layers.PReLU())(hidden1)
+  concat = keras.layers.concatenate([input_A, hidden2])
+  output = keras.layers.Dense(4, name="main_output")(concat)
+  aux_output = keras.layers.Dense(4, name="aux_output")(hidden2)
+  model = keras.models.Model(inputs=[input_A, input_B],
+                            outputs=[output, aux_output])
+  return model
