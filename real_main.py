@@ -12,6 +12,7 @@ tf.debugging.set_log_device_placement(True)
 num_epochs = 4100
 batch_size = 32
 path_saver = '/content/drive/Shareddrives/newpro112233/electricity/weights/'
+name_saver = 'model_5_tuabin.h5'
 
 callback = tf.keras.callbacks.EarlyStopping(monitor='loss', patience=3)
 def train(data=None, labels=None, val_data=None, val_labels=None, network=network, num_epochs=num_epochs, batch_size=batch_size, show_metric=True, name_saver=None):
@@ -25,4 +26,4 @@ def train(data=None, labels=None, val_data=None, val_labels=None, network=networ
                      callbacks=[callback])
   model.save(path_saver+name_saver)
 
-train(training_examples, training_targets, validation_examples, validation_targets, network, num_epochs, batch_size, False, name_saver='model_5_tuabin.h5')
+train(training_examples, training_targets, validation_examples, validation_targets, network, num_epochs, batch_size, True, 'model_5_tuabin.h5')
