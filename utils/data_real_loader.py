@@ -3,17 +3,18 @@ import numpy as np
 import pandas as pd
 from numpy import genfromtxt
 
+all_tuabin = np.array([1, 2, 3, 17, 19])
 data_path='data/real.XLS'
 num_val=10
 num_data=508
 # Function to define the inputs. Different depending on the model and turbine
 def preprocess_features(wind_farm_dataframe):
-    selected_features = wind_farm_dataframe[1:num_data, [1, 2, 3, 17, 19]]
+    selected_features = wind_farm_dataframe[1:num_data, all_tuabin]
     return np.array(selected_features)
 
 
 def preprocess_targets(wind_farm_dataframe):  
-    selected_targets = wind_farm_dataframe[1:num_data, [52+1, 52+2, 52+3, 52+17, 52+19]]
+    selected_targets = wind_farm_dataframe[1:num_data, all_tuabin+52]
     return np.array(selected_targets)
 
 # Function used to construct the columns used by the program with the data
