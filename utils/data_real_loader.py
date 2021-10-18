@@ -7,6 +7,7 @@ all_tuabin = np.array([1, 2, 3, 17, 19])
 data_path='data/real.XLS'
 num_val=10
 num_data=508
+
 # Function to define the inputs. Different depending on the model and turbine
 def preprocess_features(wind_farm_dataframe):
     selected_features = wind_farm_dataframe[1:num_data, all_tuabin]
@@ -43,10 +44,10 @@ val_indices = np.random.choice(all_data.shape[0], size=num_val, replace=False)
 train_indices = [i for i in range(len(all_data)) if i not in val_indices]
 
 all_train = all_data[train_indices]
-training_examples = all_train[:, :5]
-training_targets = all_train[:, 5:]
+training_examples = all_train[:, :len(all_tuabin)]
+training_targets = all_train[:, len(all_tuabin):]
 
 
 all_validation = all_data[val_indices]
-validation_examples = all_validation[:, :5]
-validation_targets = all_validation[:, 5:]
+validation_examples = all_validation[:, :len(all_tuabin)]
+validation_targets = all_validation[:, len(all_tuabin):]
