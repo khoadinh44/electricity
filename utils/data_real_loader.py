@@ -4,7 +4,7 @@ import pandas as pd
 from numpy import genfromtxt
 np.random.seed(42)
 
-all_tuabin = np.array([1, 2, 3, 4, 5])
+all_tuabin = np.array([14, 15, 16, 17, 18])
 data_path='data/real.XLS'
 num_val=50
 
