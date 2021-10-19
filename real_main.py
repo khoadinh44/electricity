@@ -11,10 +11,10 @@ import keras
 tf.debugging.set_log_device_placement(True)
 
 # parameter-----------------------------------------------------------------------------------------------------------------------------
-num_epochs = 500
+num_epochs = 6000
 batch_size = 32
 path_saver = '/content/drive/Shareddrives/newpro112233/electricity/weights/'
-name_saver = 'model_5_tuabin.h5'
+name_saver = 'model_5_tuabin_16.h5'
 
 # Define the Keras TensorBoard callback.
 logdir="/content/drive/Shareddrives/newpro112233/electricity/logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -32,4 +32,4 @@ def train(data=None, labels=None, val_data=None, val_labels=None, network=networ
                      callbacks=[tensorboard_callback])
   model.save(path_saver+name_saver)
 
-train(training_examples, training_targets, validation_examples, validation_targets, network, num_epochs, batch_size, True, 'model_5_tuabin.h5')
+train(training_examples, training_targets, validation_examples, validation_targets, network, num_epochs, batch_size, True, name_saver)
