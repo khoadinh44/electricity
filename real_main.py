@@ -11,7 +11,7 @@ import keras
 tf.debugging.set_log_device_placement(True)
 
 # parameter-----------------------------------------------------------------------------------------------------------------------------
-num_epochs = 8000
+num_epochs = 500
 batch_size = 32
 path_saver = '/content/drive/Shareddrives/newpro112233/electricity/weights/'
 name_saver = 'model_5_tuabin.h5'
