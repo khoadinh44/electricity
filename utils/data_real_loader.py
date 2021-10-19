@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from numpy import genfromtxt
 
-all_tuabin = np.array([1, 2, 3, 17, 19])
+all_tuabin = np.array([1, 2, 3, 4, 5])
 data_path='data/real.XLS'
 num_val=10
 num_data=508
