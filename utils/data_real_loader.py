@@ -2,6 +2,7 @@ import tensorflow as tf
 import numpy as np
 import pandas as pd
 from numpy import genfromtxt
+np.random.seed(42)
 
 all_tuabin = np.array([1, 2, 3, 4, 5])
 data_path='data/real.XLS'
