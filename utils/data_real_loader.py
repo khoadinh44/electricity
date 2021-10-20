@@ -40,6 +40,10 @@ wind_farm_dataframe = np.array(genfromtxt(data_path, delimiter='\t'))
 examples = preprocess_features(wind_farm_dataframe)
 targets = preprocess_targets(wind_farm_dataframe)
 all_data = np.concatenate((examples, targets), axis=-1).astype(np.float32)
+min_targets = np.abs(np.min(targets))
+max_targets = np.abs(np.max(targets))
+print(f'The min of power is: {min_targets}')
+print(f'The max of power is: {max_targets}\n\n')
 
 val_indices = np.random.choice(all_data.shape[0], size=num_val, replace=False)
 train_indices = [i for i in range(len(all_data)) if i not in val_indices]
@@ -47,11 +51,11 @@ train_indices = [i for i in range(len(all_data)) if i not in val_indices]
 all_train = all_data[train_indices]
 training_examples = all_train[:, :len(all_tuabin)]
 training_targets = all_train[:, len(all_tuabin):]
-compensation = np.abs(np.min(all_data))
-print(f'The compensation is: {compensation}')
-training_targets += compensation
+training_targets += min_targets
+training_targets /= (max_targets+min_targets)
 
 all_validation = all_data[val_indices]
 validation_examples = all_validation[:, :len(all_tuabin)]
 validation_targets = all_validation[:, len(all_tuabin):]
-validation_targets += compensation
+validation_targets += min_targets
+validation_targets /= (max_targets+min_targets)
