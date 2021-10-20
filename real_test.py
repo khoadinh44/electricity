@@ -13,4 +13,4 @@ y_pred = np.array(model.predict(validation_examples.astype(np.float32))) - 71.7
 
 print(f'\nThe prediction powers are \n{y_pred[:10]}\n')
 print('\nThe true powers are:\n')
-print(validation_targets[:10])
+print(validation_targets[:10] - 71.7)
