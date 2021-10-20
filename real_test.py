@@ -7,10 +7,10 @@ from keras.models import load_model
 
 model = network()
 model.summary()
-model.load_weights('/content/drive/Shareddrives/newpro112233/electricity/weights/model_5_tuabin_next_0_1.h5') 
+model.load_weights('/content/drive/Shareddrives/newpro112233/electricity/weights/model_5_tuabin_next.h5') 
 
-y_pred = (np.array(model.predict(validation_examples))*(max_targets+min_targets)) - min_targets
+y_pred = (np.array(model.predict(validation_examples))
 
 print(f'\nThe prediction powers are \n{y_pred[:10]}\n')
 print('\nThe true powers are:\n')
-print(validation_targets[:10]*(max_targets+min_targets) - min_targets)
+print(validation_targets[:10])
