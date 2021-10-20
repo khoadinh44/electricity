@@ -4,7 +4,7 @@ import pandas as pd
 from numpy import genfromtxt
 np.random.seed(42)
 
-all_tuabin = np.array([14, 15, 16, 17, 18])
+all_tuabin = np.array([1, 2, 3, 4, 5])
 data_path='data/real.XLS'
 num_val=50
 
@@ -47,7 +47,11 @@ train_indices = [i for i in range(len(all_data)) if i not in val_indices]
 all_train = all_data[train_indices]
 training_examples = all_train[:, :len(all_tuabin)]
 training_targets = all_train[:, len(all_tuabin):]
+compensation = np.abs(np.min(all_data))
+print(f'The compensation is: {compensation}')
+training_targets += compensation
 
 all_validation = all_data[val_indices]
 validation_examples = all_validation[:, :len(all_tuabin)]
 validation_targets = all_validation[:, len(all_tuabin):]
+validation_targets += compensation
