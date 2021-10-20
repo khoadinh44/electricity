@@ -15,7 +15,7 @@ from angular_grad import AngularGrad
 num_epochs = 10000
 batch_size = 32
 path_saver = '/content/drive/Shareddrives/newpro112233/electricity/weights/'
-name_saver = 'model_5_tuabin_next_0_1.h5'
+name_saver = 'model_5_tuabin_next.h5'
 
 # Define the Keras TensorBoard callback.
 logdir="/content/drive/Shareddrives/newpro112233/electricity/logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
