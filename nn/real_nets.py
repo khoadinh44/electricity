@@ -6,9 +6,11 @@ import tensorflow as tf
 def network():
   # Build neural network
   input_ = keras.layers.Input(shape=[5,])
-  hidden1 = keras.layers.Dense(100, activation=tf.keras.layers.PReLU())(input_)
-  hidden2 = keras.layers.Dense(100, activation=tf.keras.layers.PReLU())(hidden1)
-  concat = keras.layers.concatenate([input_, hidden2])
+  hidden1 = keras.layers.Dense(100, activation=tf.keras.layers.PReLU(), kernel_initializer="he_normal")(input_)
+  norm1 = keras.layers.BatchNormalization()(hidden1)
+  hidden2 = keras.layers.Dense(100, activation=tf.keras.layers.PReLU(), kernel_initializer="he_normal")(norm1)
+  norm2 = keras.layers.BatchNormalization()(hidden2)
+  concat = keras.layers.concatenate([input_, norm2])
   output = keras.layers.Dense(5, activation=None)(concat)
   model = keras.models.Model(inputs=[input_], outputs=[output])
   return model
