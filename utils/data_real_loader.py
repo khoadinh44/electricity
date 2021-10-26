@@ -4,7 +4,7 @@ import pandas as pd
 from numpy import genfromtxt
 np.random.seed(42)
 
-all_tuabin = np.array([1, 2, 3, 4, 5])
+all_tuabin = np.array([2, 4, 18, 20, 21])
 data_path='data/real.XLS'
 num_val=50
 
@@ -39,6 +39,8 @@ def input_fn(features, labels, training=True, batch_size=16, num_epochs=1):
 wind_farm_dataframe = np.array(genfromtxt(data_path, delimiter='\t'))
 examples = preprocess_features(wind_farm_dataframe)
 targets = preprocess_targets(wind_farm_dataframe)
+targets = np.where(targets>=0, targets, 0)
+
 all_data = np.concatenate((examples, targets), axis=-1).astype(np.float32)
 # min_targets = np.abs(np.min(targets))
 # max_targets = np.abs(np.max(targets))
