@@ -1,7 +1,6 @@
 from __future__ import print_function
 import tensorflow as tf
 import numpy as np
-import tflearn
 from utils.data_real_loader import training_examples, training_targets, validation_examples, validation_targets
 from nn.real_nets import network
 from datetime import datetime
@@ -15,7 +14,7 @@ from angular_grad import AngularGrad
 num_epochs = 10000
 batch_size = 32
 path_saver = '/content/drive/Shareddrives/newpro112233/electricity/weights/'
-name_saver = 'model_5_tuabin_next.h5'
+name_saver = 'model_5_tuabin.h5'
 
 # Define the Keras TensorBoard callback.
 logdir="/content/drive/Shareddrives/newpro112233/electricity/logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
