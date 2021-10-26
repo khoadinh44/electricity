@@ -21,14 +21,15 @@ logdir="/content/drive/Shareddrives/newpro112233/electricity/logs/fit/" + dateti
 tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
 # callback = tf.keras.callbacks.EarlyStopping(monitor='loss', patience=3)
-def train(data=None, labels=None, val_data=None, val_labels=None, network=network, num_epochs=num_epochs, batch_size=batch_size, show_metric=True, name_saver=None):
+def train(data=None, labels=None, val_data=None, val_labels=None, network=None, num_epochs=None, batch_size=None, show_metric=True, name_saver=None):
   model = network()
-  # model.load_weights('/content/drive/Shareddrives/newpro112233/electricity/weights/model_5_tuabin.h5')
+  # 
+  model.load_weights('/content/drive/Shareddrives/newpro112233/electricity/weights/model_5_tuabin_next.h5')
   model.compile(loss="mean_squared_error",
                 metrics=[tf.keras.metrics.Precision()],
                 optimizer=AngularGrad())
 
-  history = model.fit(data, labels, epochs=num_epochs,
+  history = model.fit(x=data, y=labels, epochs=num_epochs,
                      validation_data=(val_data, val_labels),
                      callbacks=[tensorboard_callback])
   model.save(path_saver+name_saver)
