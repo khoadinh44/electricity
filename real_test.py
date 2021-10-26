@@ -7,7 +7,7 @@ from keras.models import load_model
 
 model = network()
 model.summary()
-model.load_weights('/content/drive/Shareddrives/newpro112233/electricity/weights/model_5_tuabin_next.h5') 
+model.load_weights('/content/drive/Shareddrives/newpro112233/electricity/weights/model_5_tuabin.h5') 
 
 y_pred = model.predict(validation_examples).astype(np.float32)
 
