@@ -54,6 +54,11 @@ all_data = np.concatenate((examples, targets), axis=-1).astype(np.float32)
 
 val_indices = np.random.choice(all_data.shape[0], size=num_val, replace=False)
 train_indices = [i for i in range(len(all_data)) if i not in val_indices]
+test_indices = range(308, 318)
+
+all_test = all_data[test_indices]
+test_examples = all_test[:, :len(all_tuabin)]
+test_targets = all_test[:, len(all_tuabin):]
 
 all_train = all_data[train_indices]
 training_examples = all_train[:, :len(all_tuabin)]
